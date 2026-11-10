@@ -431,7 +431,7 @@ border:1px solid rgba(246,221,146,.55);box-shadow:0 26px 60px rgba(0,0,0,.6),ins
         <div class="pop" id="pop" role="dialog" aria-modal="false" aria-hidden="true">
           <i class="pop-arrow"></i>
           <div class="pop-h"><b id="popT"></b><button type="button" class="pop-x" id="popX" aria-label="Close">&times;</button></div>
-          <label class="pop-f"><input id="popI" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" aria-label="Value"><span id="popU"></span></label>
+          <label class="pop-f"><input id="popI" type="text" autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false" enterkeyhint="done" aria-label="Value"><span id="popU"></span></label>
           <p class="pop-e" id="popE" role="alert"></p>
           <div class="pop-b"><button type="button" class="pbtn ghost" id="popC">Clear</button><button type="button" class="pbtn" id="popS">Save</button></div>
         </div>
@@ -577,22 +577,39 @@ const panel=$(".panel"), pop=$("#pop"), popT=$("#popT"), popI=$("#popI"), popU=$
 const note=$("#selnote"), order=$("#startOrder");
 let popCfg=null, popTrig=null;
 
+let openedAt=0, refocused=false, popIntent=false;
+function placePop(){
+  if(!popTrig) return;
+  pop.style.width=Math.min(300,panel.clientWidth-24)+"px";
+  const pr=panel.getBoundingClientRect(), tr=popTrig.getBoundingClientRect(), w=pop.offsetWidth;
+  const cx=tr.left-pr.left+tr.width/2;
+  const left=Math.max(12,Math.min(cx-w/2,pr.width-w-12));
+  pop.style.left=left+"px"; pop.style.top=(tr.bottom-pr.top+12)+"px";
+  pop.style.setProperty("--ax",Math.max(24,Math.min(cx-left,w-24))+"px");
+}
+/* keep the popup above the on-screen keyboard (never closes or blurs anything) */
+function ensureVisible(){
+  if(!popTrig) return;
+  const r=pop.getBoundingClientRect(), vv=window.visualViewport;
+  const top=84, bottom=(vv?vv.offsetTop+vv.height:innerHeight)-12;
+  let d=0;
+  if(r.bottom>bottom) d=Math.min(r.bottom-bottom,r.top-top); else if(r.top<top) d=r.top-top;
+  if(d) scrollBy({top:d,behavior:"instant"});
+}
 function openPop(trig,cfg){
   if(popTrig&&popTrig!==trig) popTrig.setAttribute("aria-expanded","false");
-  popCfg=cfg; popTrig=trig;
+  popCfg=cfg; popTrig=trig; openedAt=Date.now(); refocused=false;
   popT.textContent=cfg.title; popI.value=cfg.value||""; popI.placeholder=cfg.ph;
   popI.setAttribute("inputmode",cfg.mode); popI.maxLength=cfg.max;
   popU.textContent=cfg.unit||""; popU.style.display=cfg.unit?"":"none";
   popC.style.display=cfg.canClear?"":"none"; popE.textContent="";
   pop.setAttribute("aria-label",cfg.title);
-  pop.style.width=Math.min(300,panel.clientWidth-24)+"px";
-  const pr=panel.getBoundingClientRect(), tr=trig.getBoundingClientRect(), w=pop.offsetWidth;
-  const cx=tr.left-pr.left+tr.width/2;
-  const left=Math.max(12,Math.min(cx-w/2,pr.width-w-12));
-  pop.style.left=left+"px"; pop.style.top=(tr.bottom-pr.top+12)+"px";
-  pop.style.setProperty("--ax",Math.max(24,Math.min(cx-left,w-24))+"px");
+  placePop();
   pop.classList.add("show"); pop.setAttribute("aria-hidden","false"); trig.setAttribute("aria-expanded","true");
-  setTimeout(()=>popI.focus(),60);
+  /* focus inside the tap gesture (required by iOS to raise the keyboard), then again after a short delay as a safety net */
+  popI.focus({preventScroll:true});
+  setTimeout(()=>{ if(popTrig===trig&&document.activeElement!==popI) popI.focus({preventScroll:true}); },50);
+  setTimeout(ensureVisible,350);
 }
 function closePop(refocus){
   if(!popTrig) return;
@@ -611,10 +628,19 @@ $("#popS").onclick=savePop;
 $("#popX").onclick=()=>closePop(true);
 popC.onclick=()=>{ if(popCfg){ popCfg.onClear(); closePop(true); } };
 popI.addEventListener("keydown",e=>{ if(e.key==="Enter"){e.preventDefault();savePop();} if(e.key==="Escape"){closePop(true);} });
-popI.addEventListener("input",()=>{ if(popCfg&&popCfg.mode==="decimal") popI.value=popI.value.replace(/[^\d.,]/g,""); popE.textContent=""; });
+popI.addEventListener("input",()=>{ if(popCfg&&popCfg.mode==="decimal"){ const c=popI.value.replace(/[^\d.,]/g,""); if(c!==popI.value) popI.value=c; } if(popE.textContent) popE.textContent=""; });
 document.addEventListener("pointerdown",e=>{ if(popTrig&&!pop.contains(e.target)&&!popTrig.contains(e.target)) closePop(); });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closePop(true); });
-addEventListener("resize",()=>closePop());
+/* the virtual keyboard fires resize/visualViewport events: these must NOT close the popup or blur the input */
+let lastW=innerWidth;
+addEventListener("resize",()=>{ if(innerWidth!==lastW){ lastW=innerWidth; placePop(); } });
+if(window.visualViewport) visualViewport.addEventListener("resize",()=>{ if(popTrig) ensureVisible(); });
+pop.addEventListener("pointerdown",()=>{ popIntent=true; setTimeout(()=>{popIntent=false},400); },true);
+popI.addEventListener("blur",()=>{
+  /* if layout settling steals focus right after opening, take it back once */
+  if(!popTrig||popIntent||refocused||Date.now()-openedAt>800) return;
+  refocused=true; setTimeout(()=>{ if(popTrig&&document.activeElement!==popI) popI.focus({preventScroll:true}); },0);
+});
 
 const vFabric=v=>{ v=v.replace(/[*_~`]/g,"").replace(/\s+/g," ").trim(); return v.length<2?{err:"Please type your fabric name (at least 2 letters)."}:{val:v}; };
 const vMeas=v=>{
