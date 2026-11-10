@@ -276,6 +276,64 @@ background:linear-gradient(135deg,transparent 46.5%,rgba(255,238,196,.34) 50%,tr
 @media(max-width:560px){
 .ico{width:88px;height:88px}.ico svg{width:46px;height:46px}
 .fo{font-size:.86rem}.panel{padding:26px 22px}.coord{padding:20px}}
+
+/* ===== v4: popup inputs, summary, smooth scroll ===== */
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.panel{overflow:visible}
+.fl{max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fo[aria-expanded=true]{border-color:var(--gold);box-shadow:0 0 0 1px rgba(212,175,55,.5)}
+.mhead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px}
+.mcount{font-size:.86rem;color:#e8c46a;margin:0!important}
+.unit{display:inline-flex;gap:2px;padding:3px;border-radius:999px;border:1px solid rgba(212,175,55,.4);background:rgba(255,255,255,.05)}
+.unit button{font:inherit;font-size:.8rem;letter-spacing:.08em;padding:6px 16px;border-radius:999px;border:0;background:transparent;color:var(--mut);cursor:pointer;transition:background .35s,color .35s}
+.unit button[aria-pressed=true]{background:linear-gradient(135deg,#f3d98b,#D4AF37);color:#2a0c14}
+.mcs{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.mc{font:inherit;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;padding:9px 16px 9px 12px;border-radius:999px;cursor:pointer;color:var(--txt);background:rgba(255,255,255,.06);border:1px solid rgba(212,175,55,.4);transition:transform .4s var(--spring),box-shadow .4s,background .4s,border-color .4s}
+.mc:before{content:"+";display:grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1px solid rgba(212,175,55,.6);color:var(--gold);font-size:.95rem;line-height:1}
+.mc b{display:none;font-weight:600;color:#f6dd92}
+.mc.set{background:linear-gradient(135deg,rgba(212,175,55,.32),rgba(212,175,55,.1));border-color:var(--gold);color:#fff}
+.mc.set:before{content:"\2713";background:var(--gold);color:#2a0c14;border-color:var(--gold);font-size:.7rem}
+.mc.set b{display:inline}
+.mc[aria-expanded=true]{border-color:#f6dd92;box-shadow:0 0 0 3px rgba(212,175,55,.2)}
+@media(hover:hover){.mc:hover{transform:translateY(-5px) scale(1.08);border-color:var(--gold);box-shadow:0 12px 26px rgba(0,0,0,.45),0 0 16px rgba(212,175,55,.2)}}
+
+/* popup input */
+.pop{position:absolute;z-index:20;left:0;top:0;visibility:hidden;opacity:0;transform:translateY(10px) scale(.96);transform-origin:var(--ax,50%) 0;
+transition:opacity .3s ease,transform .5s var(--spring),visibility 0s .5s;padding:16px 16px 14px;border-radius:18px;
+background:linear-gradient(135deg,rgba(66,20,34,.97),rgba(30,9,16,.98));backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+border:1px solid rgba(246,221,146,.55);box-shadow:0 26px 60px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.18),0 0 30px rgba(212,175,55,.15)}
+.pop.show{visibility:visible;opacity:1;transform:none;transition-delay:0s}
+.pop-arrow{position:absolute;top:-7px;left:var(--ax,50%);width:12px;height:12px;margin-left:-6px;transform:rotate(45deg);background:rgb(66,20,34);border-left:1px solid rgba(246,221,146,.55);border-top:1px solid rgba(246,221,146,.55)}
+.pop-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
+.pop-h b{font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--champ)}
+.pop-x{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid rgba(212,175,55,.5);background:rgba(255,255,255,.06);color:var(--champ);font-size:1.1rem;line-height:1;cursor:pointer;transition:transform .35s var(--spring),background .3s}
+.pop-x:hover{transform:rotate(90deg) scale(1.1);background:rgba(212,175,55,.25)}
+.pop-f{display:flex;align-items:center;gap:8px;padding:0 14px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(212,175,55,.45);transition:border-color .3s,box-shadow .3s}
+.pop-f:focus-within{border-color:#f6dd92;box-shadow:0 0 0 3px rgba(212,175,55,.2)}
+.pop-f input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font:inherit;font-size:16px;padding:12px 0}
+.pop-f input::placeholder{color:rgba(243,232,220,.4)}
+.pop-f span{color:#f6dd92;font-size:.85rem;white-space:nowrap}
+.pop-e{min-height:1.3em;margin:8px 0 2px!important;font-size:.8rem;color:#ff9fb0!important}
+.pop-b{display:flex;gap:10px;justify-content:flex-end;margin-top:4px}
+.pbtn{font:inherit;font-size:.86rem;padding:9px 22px;border-radius:999px;cursor:pointer;border:1px solid var(--gold);background:linear-gradient(135deg,#f3d98b,#D4AF37 55%,#a97f28);color:#2a0c14;transition:transform .35s var(--spring),box-shadow .35s}
+.pbtn:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 8px 20px rgba(212,175,55,.3)}
+.pbtn.ghost{background:transparent;color:var(--champ)}
+.pop.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
+/* order summary */
+.summary{margin-top:22px;padding:18px 20px 8px;border-radius:18px;background:rgba(0,0,0,.24);border:1px solid rgba(212,175,55,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);max-width:560px}
+.pane .sum-h{font-family:var(--serif);font-size:1.25rem;color:var(--champ);margin:0 0 6px;max-width:none}
+.srow{display:grid;grid-template-columns:116px 1fr auto;gap:12px;align-items:start;padding:11px 0;border-top:1px solid rgba(212,175,55,.18);font-size:.92rem}
+.srow dt{color:var(--gold);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding-top:4px}
+.srow dd{color:var(--txt);word-break:break-word}
+.srow .edit{background:none;border:0;color:#f6dd92;font:inherit;font-size:.82rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:2px 0}
+.empty{color:var(--mut);font-style:italic}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:6px 14px}
+.mg b{color:#f6dd92;font-weight:600}
+@media(max-width:560px){
+.srow{grid-template-columns:1fr auto}.srow dt{grid-column:1/-1;padding-top:0}.srow dd{grid-column:1}.srow .edit,.srow>span{grid-column:2}
+.summary{padding:16px 16px 6px}.fl{max-width:150px}}
 </style>
 </head>
 <body>
@@ -348,9 +406,9 @@ background:linear-gradient(135deg,transparent 46.5%,rgba(255,238,196,.34) 50%,tr
       <a class="card fade" tabindex="0" data-wa="Hello Nahira, I would like to see Unstitched Fabrics.">
         <div class="art a2"></div>
         <span class="tagc">Premium</span><div class="ico" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="18" cy="26" rx="7" ry="13"/><ellipse cx="18" cy="26" rx="2.5" ry="5"/><path d="M18 13h28c4 0 7 5.8 7 13s-3 13-7 13H18"/><path d="M26 19c3 2 5-2 8 0s5-2 8 0M26 26c3 2 5-2 8 0s5-2 8 0M26 33c3 2 5-2 8 0s5-2 8 0"/><path d="M22 39c5 5 12-1 20 4s9 9 9 14c-9-3-14 2-21-2s-8-9-8-16z"/></svg></div><div class="txt"><h3>Unstitched Fabrics</h3><p>Premium lawn, silk and cotton by the length.</p><span class="more">Ask on WhatsApp</span></div></a>
-      <a class="card fade" tabindex="0" data-wa="Hello Nahira, I would like to book Custom Tailoring.">
+      <a class="card fade" href="#tailoring" aria-label="Custom Tailoring: design your outfit in three steps">
         <div class="art a3"></div>
-        <span class="tagc">Perfect fit</span><div class="ico" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="40" r="5.5"/><circle cx="45" cy="40" r="5.5"/><path d="M22 35L44 6M42 35L20 6"/><circle cx="32" cy="22.5" r="1.4" fill="currentColor"/><rect x="5" y="52" width="54" height="8" rx="1.5"/><path d="M12 52v4M19 52v3M26 52v4M33 52v3M40 52v4M47 52v3M54 52v4"/></svg></div><div class="txt"><h3>Custom Tailoring</h3><p>Expert fitting, stitched to your exact measurements.</p><span class="more">Book a fitting</span></div></a>
+        <span class="tagc">Perfect fit</span><div class="ico" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="40" r="5.5"/><circle cx="45" cy="40" r="5.5"/><path d="M22 35L44 6M42 35L20 6"/><circle cx="32" cy="22.5" r="1.4" fill="currentColor"/><rect x="5" y="52" width="54" height="8" rx="1.5"/><path d="M12 52v4M19 52v3M26 52v4M33 52v3M40 52v4M47 52v3M54 52v4"/></svg></div><div class="txt"><h3>Custom Tailoring</h3><p>Expert fitting, stitched to your exact measurements.</p><span class="more">Design your outfit &darr;</span></div></a>
       <a class="card fade" tabindex="0" data-wa="Hello Nahira, I would like to see Burqas and Hijabs.">
         <div class="art a4"></div>
         <span class="tagc">Modest</span><div class="ico" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M32 5c-9 0-14 7-14 16 0 6 2 9 2 13L11 58h42l-9-24c0-4 2-7 2-13 0-9-5-16-14-16z"/><ellipse cx="32" cy="22" rx="6.5" ry="8.5"/><path d="M32 34v24M22 40c3 2 6 3 10 3s7-1 10-3"/></svg></div><div class="txt"><h3>Burqas &amp; Hijabs</h3><p>Graceful, modern modest wear in soft, fluid fabrics.</p><span class="more">Ask on WhatsApp</span></div></a>
@@ -370,6 +428,13 @@ background:linear-gradient(135deg,transparent 46.5%,rgba(255,238,196,.34) 50%,tr
         <button class="tab" role="tab" aria-selected="false" data-i="2"><span class="n">3</span><span class="tl"><small>STEP 3</small>Fast stitching &amp; boutique pickup</span></button>
       </div>
       <div class="panel">
+        <div class="pop" id="pop" role="dialog" aria-modal="false" aria-hidden="true">
+          <i class="pop-arrow"></i>
+          <div class="pop-h"><b id="popT"></b><button type="button" class="pop-x" id="popX" aria-label="Close">&times;</button></div>
+          <label class="pop-f"><input id="popI" type="text" autocomplete="off" autocapitalize="words" spellcheck="false" aria-label="Value"><span id="popU"></span></label>
+          <p class="pop-e" id="popE" role="alert"></p>
+          <div class="pop-b"><button type="button" class="pbtn ghost" id="popC">Clear</button><button type="button" class="pbtn" id="popS">Save</button></div>
+        </div>
         <div class="pane on">
           <p class="pk">STEP 1 OF 3</p><h3>Choose your style or fabric</h3>
           <p>Pick a design from our boutique or send us a picture you love. Choose from our <b class="hl">lawn, silk and cotton</b>, or bring your own fabric.</p>
@@ -377,22 +442,41 @@ background:linear-gradient(135deg,transparent 46.5%,rgba(255,238,196,.34) 50%,tr
             <button class="fo" aria-pressed="false" data-f="Lawn"><i class="sw-lawn"></i>Lawn</button>
             <button class="fo" aria-pressed="false" data-f="Silk"><i class="sw-silk"></i>Silk</button>
             <button class="fo" aria-pressed="false" data-f="Cotton"><i class="sw-cotton"></i>Cotton</button>
-            <button class="fo" aria-pressed="false" data-f="my own fabric"><i class="sw-own"></i>Your own fabric</button>
+            <button class="fo" aria-pressed="false" aria-haspopup="dialog" aria-expanded="false" data-f="own"><i class="sw-own"></i><span class="fl">Your own fabric</span></button>
           </div>
           <p class="selnote" id="selnote" aria-live="polite">Tap a fabric to add it to your order.</p>
           <div class="nav2"><a class="btn b-line" data-next>Next step</a></div>
         </div>
         <div class="pane">
           <p class="pk">STEP 2 OF 3</p><h3>Share your measurements</h3>
-          <p>Visit the boutique for a precise fitting, or send your measurements on WhatsApp. We guide you on what to measure and <b class="hl">double-check before cutting</b>.</p>
-          <div class="chips"><span>Bust</span><span>Waist</span><span>Hip</span><span>Shoulder</span><span>Sleeve</span><span>Length</span></div>
+          <p>Visit the boutique for a precise fitting, or tap a measurement below to type it in. We guide you on what to measure and <b class="hl">double-check before cutting</b>.</p>
+          <div class="mhead">
+            <div class="unit" role="group" aria-label="Measurement unit"><button type="button" data-u="in" aria-pressed="true">Inches</button><button type="button" data-u="cm" aria-pressed="false">cm</button></div>
+            <p class="mcount" id="mcount" aria-live="polite">0 of 6 measurements added</p>
+          </div>
+          <div class="mcs" role="group" aria-label="Measurements">
+            <button type="button" class="mc" data-m="Bust" aria-haspopup="dialog" aria-expanded="false">Bust <b></b></button>
+            <button type="button" class="mc" data-m="Waist" aria-haspopup="dialog" aria-expanded="false">Waist <b></b></button>
+            <button type="button" class="mc" data-m="Hip" aria-haspopup="dialog" aria-expanded="false">Hip <b></b></button>
+            <button type="button" class="mc" data-m="Shoulder" aria-haspopup="dialog" aria-expanded="false">Shoulder <b></b></button>
+            <button type="button" class="mc" data-m="Sleeve" aria-haspopup="dialog" aria-expanded="false">Sleeve <b></b></button>
+            <button type="button" class="mc" data-m="Length" aria-haspopup="dialog" aria-expanded="false">Length <b></b></button>
+          </div>
           <div class="nav2"><a class="btn b-line" data-next>Next step</a></div>
         </div>
         <div class="pane">
           <p class="pk">STEP 3 OF 3</p><h3>Fast stitching &amp; boutique pickup</h3>
           <p>Your outfit is <b class="hl">stitched quickly</b> and finished by hand. Once it is ready, <b class="hl">collect it from our Udaipur boutique</b>.</p>
           <div class="chips"><span>Hand-finished</span><span>Final fitting check</span><span>Boutique pickup</span></div>
-          <div class="nav2"><a class="btn b-wa" id="startOrder" data-wa="Hello Nahira, I would like to start a custom tailoring order." target="_blank" rel="noopener">Start my order</a></div>
+          <div class="summary" aria-live="polite">
+            <p class="sum-h">Your order summary</p>
+            <dl>
+              <div class="srow"><dt>Fabric</dt><dd id="sFabric"></dd><button type="button" class="edit" data-go="0">Edit</button></div>
+              <div class="srow"><dt>Measurements</dt><dd id="sMeas"></dd><button type="button" class="edit" data-go="1">Edit</button></div>
+              <div class="srow"><dt>Pickup</dt><dd>Boutique, Udaipur</dd><span></span></div>
+            </dl>
+          </div>
+          <div class="nav2"><a class="btn b-wa" id="startOrder" href="#" target="_blank" rel="noopener">Start my order on WhatsApp</a></div>
         </div>
       </div>
     </div>
@@ -473,6 +557,7 @@ $$("#links a").forEach(a => a.onclick = () => { links.classList.remove("open"); 
 /* tailoring steps */
 const tabs = $$(".tab"), panes = $$(".pane");
 function go(i){
+  closePop();
   tabs.forEach((t,k) => { t.classList.toggle("on", k===i); t.setAttribute("aria-selected", k===i); });
   panes.forEach((p,k) => p.classList.toggle("on", k===i));
 }
@@ -485,18 +570,129 @@ const io = new IntersectionObserver(es => es.forEach(e => {
 }), {threshold:.12});
 $$(".fade").forEach((el,i) => { el.style.transitionDelay = (i % 4) * 90 + "ms"; io.observe(el); });
 
-/* fabric selection feeds the WhatsApp order message */
-let fabric="";
+/* ---------- tailoring builder: fabric, measurements, summary, WhatsApp message ---------- */
+const MEAS=["Bust","Waist","Hip","Shoulder","Sleeve","Length"];
+const state={fabric:"",own:false,unit:"in",m:{}};
+const panel=$(".panel"), pop=$("#pop"), popT=$("#popT"), popI=$("#popI"), popU=$("#popU"), popE=$("#popE"), popC=$("#popC");
 const note=$("#selnote"), order=$("#startOrder");
-function setOrder(){
-  order.href=wa("Hello Nahira, I would like to start a custom tailoring order"+(fabric?" in "+fabric:"")+".");
-  note.textContent=fabric?"Selected fabric: "+fabric+". Your WhatsApp order message is updated.":"Tap a fabric to add it to your order.";
+let popCfg=null, popTrig=null;
+
+function openPop(trig,cfg){
+  if(popTrig&&popTrig!==trig) popTrig.setAttribute("aria-expanded","false");
+  popCfg=cfg; popTrig=trig;
+  popT.textContent=cfg.title; popI.value=cfg.value||""; popI.placeholder=cfg.ph;
+  popI.setAttribute("inputmode",cfg.mode); popI.maxLength=cfg.max;
+  popU.textContent=cfg.unit||""; popU.style.display=cfg.unit?"":"none";
+  popC.style.display=cfg.canClear?"":"none"; popE.textContent="";
+  pop.setAttribute("aria-label",cfg.title);
+  pop.style.width=Math.min(300,panel.clientWidth-24)+"px";
+  const pr=panel.getBoundingClientRect(), tr=trig.getBoundingClientRect(), w=pop.offsetWidth;
+  const cx=tr.left-pr.left+tr.width/2;
+  const left=Math.max(12,Math.min(cx-w/2,pr.width-w-12));
+  pop.style.left=left+"px"; pop.style.top=(tr.bottom-pr.top+12)+"px";
+  pop.style.setProperty("--ax",Math.max(24,Math.min(cx-left,w-24))+"px");
+  pop.classList.add("show"); pop.setAttribute("aria-hidden","false"); trig.setAttribute("aria-expanded","true");
+  setTimeout(()=>popI.focus(),60);
 }
+function closePop(refocus){
+  if(!popTrig) return;
+  pop.classList.remove("show"); pop.setAttribute("aria-hidden","true");
+  popTrig.setAttribute("aria-expanded","false");
+  if(refocus) popTrig.focus({preventScroll:true});
+  popCfg=null; popTrig=null;
+}
+function savePop(){
+  if(!popCfg) return;
+  const r=popCfg.validate(popI.value);
+  if(r.err){ popE.textContent=r.err; pop.classList.remove("shake"); void pop.offsetWidth; pop.classList.add("shake"); popI.focus(); return; }
+  popCfg.onSave(r.val); closePop(true);
+}
+$("#popS").onclick=savePop;
+$("#popX").onclick=()=>closePop(true);
+popC.onclick=()=>{ if(popCfg){ popCfg.onClear(); closePop(true); } };
+popI.addEventListener("keydown",e=>{ if(e.key==="Enter"){e.preventDefault();savePop();} if(e.key==="Escape"){closePop(true);} });
+popI.addEventListener("input",()=>{ if(popCfg&&popCfg.mode==="decimal") popI.value=popI.value.replace(/[^\d.,]/g,""); popE.textContent=""; });
+document.addEventListener("pointerdown",e=>{ if(popTrig&&!pop.contains(e.target)&&!popTrig.contains(e.target)) closePop(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closePop(true); });
+addEventListener("resize",()=>closePop());
+
+const vFabric=v=>{ v=v.replace(/[*_~`]/g,"").replace(/\s+/g," ").trim(); return v.length<2?{err:"Please type your fabric name (at least 2 letters)."}:{val:v}; };
+const vMeas=v=>{
+  v=v.trim().replace(",",".");
+  const max=state.unit==="in"?120:300;
+  if(!/^\d{1,3}(\.\d{1,2})?$/.test(v)||+v<1||+v>max) return {err:`Enter a number between 1 and ${max} (${state.unit==="in"?"inches":"cm"}).`};
+  return {val:String(Number(v))};
+};
+
+/* fabric options */
 $$(".fo").forEach(b=>b.onclick=()=>{
-  const on=b.getAttribute("aria-pressed")==="true";
-  $$(".fo").forEach(x=>x.setAttribute("aria-pressed","false"));
-  b.setAttribute("aria-pressed",String(!on)); fabric=on?"":b.dataset.f; setOrder();
+  if(b.dataset.f==="own"){
+    if(popTrig===b){ closePop(); return; }
+    openPop(b,{title:"Your own fabric",ph:"e.g. Chanderi silk",mode:"text",max:40,value:state.own?state.fabric:"",canClear:state.own,
+      validate:vFabric,onSave:v=>{state.fabric=v;state.own=true;render();},onClear:()=>{state.fabric="";state.own=false;render();}});
+    return;
+  }
+  closePop();
+  const on=!state.own&&state.fabric===b.dataset.f;
+  state.fabric=on?"":b.dataset.f; state.own=false; render();
 });
+
+/* measurements */
+$$(".mc").forEach(b=>b.onclick=()=>{
+  const n=b.dataset.m;
+  if(popTrig===b){ closePop(); return; }
+  openPop(b,{title:n,ph:state.unit==="in"?"e.g. 36":"e.g. 91",mode:"decimal",max:6,unit:state.unit==="in"?"inches":"cm",value:state.m[n]||"",canClear:!!state.m[n],
+    validate:vMeas,onSave:v=>{state.m[n]=v;render();},onClear:()=>{delete state.m[n];render();}});
+});
+$$(".unit button").forEach(b=>b.onclick=()=>{
+  const u=b.dataset.u; if(u===state.unit) return;
+  const f=u==="cm"?2.54:1/2.54;
+  for(const k in state.m) state.m[k]=String(Math.round(parseFloat(state.m[k])*f*10)/10);
+  state.unit=u; closePop(); render();
+});
+$$("[data-go]").forEach(b=>b.onclick=()=>go(+b.dataset.go));
+
+/* WhatsApp order message */
+function buildMsg(){
+  const unit=state.unit==="in"?"inches":"cm", ks=MEAS.filter(k=>state.m[k]), miss=MEAS.filter(k=>!state.m[k]);
+  const L=["*NAHIRA FASHION | Custom Tailoring Order*","",
+    "Hello Nahira Fashion, I would like to place a custom tailoring order with the details below.","",
+    "*FABRIC*","• "+(state.fabric?state.fabric+(state.own?" (my own fabric)":""):"To be discussed"),"",
+    "*MEASUREMENTS"+(ks.length?" ("+unit+")":"")+"*"];
+  if(ks.length){ ks.forEach(k=>L.push("• "+k+": "+state.m[k])); if(miss.length) L.push("• Still to share: "+miss.join(", ")); }
+  else L.push("• I would like guidance on measurements");
+  L.push("","*PICKUP*","• Boutique pickup, Udaipur","","Please confirm the price, availability and stitching time. Thank you!");
+  return L.join("\n");
+}
+
+/* render everything that depends on the selections */
+function render(){
+  $$(".fo").forEach(b=>{
+    const own=b.dataset.f==="own", on=own?state.own:(!state.own&&b.dataset.f===state.fabric);
+    b.setAttribute("aria-pressed",String(on));
+    if(own) $(".fl",b).textContent=state.own?"Own: "+state.fabric:"Your own fabric";
+  });
+  note.textContent=state.fabric?"Selected fabric: "+state.fabric+".":"Tap a fabric to add it to your order.";
+  let c=0;
+  $$(".mc").forEach(b=>{
+    const n=b.dataset.m, v=state.m[n]; if(v) c++;
+    b.classList.toggle("set",!!v); $("b",b).textContent=v?v+" "+state.unit:"";
+    b.setAttribute("aria-label",v?n+": "+v+" "+state.unit+". Tap to edit":"Add "+n+" measurement");
+  });
+  $$(".unit button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.u===state.unit)));
+  $("#mcount").textContent=c+" of 6 measurements added";
+  const sf=$("#sFabric"); sf.textContent=state.fabric?state.fabric+(state.own?" (your own fabric)":""):"Not selected yet"; sf.className=state.fabric?"":"empty";
+  const sm=$("#sMeas"); sm.textContent=""; sm.className="";
+  const ks=MEAS.filter(k=>state.m[k]);
+  if(ks.length){ const g=document.createElement("div"); g.className="mg";
+    ks.forEach(k=>{ const d=document.createElement("span"); d.textContent=k+" "; const b=document.createElement("b"); b.textContent=state.m[k]+" "+state.unit; d.appendChild(b); g.appendChild(d); });
+    sm.appendChild(g);
+  } else { sm.textContent="None added yet. We will guide you on WhatsApp."; sm.className="empty"; }
+  order.href=wa(buildMsg());
+}
+order.addEventListener("click",()=>{ order.href=wa(buildMsg()); });
+render();
+
 /* arrow keys move between steps */
 tabs.forEach((t,i)=>t.addEventListener("keydown",e=>{
   if(e.key==="ArrowRight"||e.key==="ArrowDown"){go((i+1)%3);tabs[(i+1)%3].focus();e.preventDefault()}
