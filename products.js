@@ -1,0 +1,243 @@
+/* =====================================================================
+   NAHIRA FASHION  |  MASTER INVENTORY  (products.js)
+   ---------------------------------------------------------------------
+   PART 1 below is the ONLY part you need to edit:
+     - add / edit / remove a CATEGORY  -> change the "categories" list
+     - add / edit / remove a PRODUCT   -> change the "products" list
+   PART 2 (further down) is shared code. Please leave it untouched.
+
+   PHOTOS: put image files in a folder named "images" next to this file
+   and write the path in the product, e.g.  images: ["images/wine-1.jpg"]
+   If "images" is empty (or a file is missing) a luxury placeholder is shown.
+   ===================================================================== */
+
+window.NAHIRA = {
+
+  /* ---------- Boutique settings ---------- */
+  config: {
+    whatsapp: "919116639756",            // WhatsApp number: country code + number, digits only
+    phoneTel: "+919116639756",           // used for "tel:" call links
+    phoneDisplay: "+91 91166 39756",     // shown on the pages
+    currency: "\u20B9",                  // rupee sign
+    defaultSizes: ["S", "M", "L", "XL", "Custom"],
+    maxQty: 10,
+    coords: "24.5827947\u00B0 N, 73.6676145\u00B0 E",
+    mapLink: "https://www.google.com/maps/search/?api=1&query=24.5827947,73.6676145"
+  },
+
+  /* ---------- CATEGORIES ----------
+     id        short lowercase word used in the web address (category.html?cat=ID)
+     name      title shown to customers
+     tagline   one short line under the title
+     description  longer text shown at the top of the category page
+     icon      "suit" | "fabric" | "hijab" | "scissors" | "gem"
+     tone      two colours for the placeholder background
+     sizes     false = hide the size selector for every product in this category
+     href      optional: link somewhere else instead of a product grid
+  */
+  categories: [
+    { id: "readymade",  name: "Readymade Suits",   tagline: "Designer partywear & daily wear",
+      description: "Ready-to-wear suits for festive evenings and easy everyday elegance. Reserve your size and collect it from our Udaipur boutique.",
+      icon: "suit", tone: ["#b53b5a", "#4a1220"] },
+
+    { id: "unstitched", name: "Unstitched Fabrics", tagline: "Premium lawn, silk & cotton",
+      description: "Beautiful fabric lengths, ready for stitching. Pair any of them with our Custom Tailoring for a perfect fit.",
+      icon: "fabric", tone: ["#a9763f", "#3b2314"], sizes: false },
+
+    { id: "burqas",     name: "Burqas & Hijabs",    tagline: "Graceful, modern modest wear",
+      description: "Soft, fluid and elegant modest wear in refined fabrics, designed to be worn all day with ease.",
+      icon: "hijab", tone: ["#6f3d50", "#1d0b14"] },
+
+    { id: "tailoring",  name: "Custom Tailoring",   tagline: "Stitched to your measurements",
+      icon: "scissors", tone: ["#a03450", "#2a0c16"], href: "index.html#tailoring" }
+  ],
+
+  /* ---------- PRODUCTS (placeholder samples: replace with your real stock) ----------
+     id           unique, lowercase, no spaces (use dashes). It appears in the web address.
+     category     must match a category id above
+     price        number in rupees (use 0 to show "Price on request")
+     mrp          optional original price, shown struck through
+     badge        optional small label: "New", "Bestseller" ...
+     fabric       short fabric line
+     description  paragraph shown on the product page
+     details      list of bullet points
+     sizes        optional: ["S","M","L"] to override, or false to hide the size selector
+     images       list of image paths (first one is the main photo)
+     inStock      set false to show "Sold out"
+     note         optional extra line under the price
+     tailoringHint  true = show a "Want it stitched?" link to Custom Tailoring
+  */
+  products: [
+    { id: "wine-velvet-anarkali", category: "readymade", name: "Wine Velvet Anarkali Suit",
+      price: 5499, mrp: 6999, badge: "New", fabric: "Soft velvet with fine zari embroidery",
+      description: "A richly draped anarkali in deep wine velvet, finished with delicate zari work at the neckline and hem. Made for weddings, festive dinners and special evenings.",
+      details: ["3-piece set: anarkali, churidar and dupatta", "Soft velvet with silky inner lining", "Fine zari embroidery", "Dry clean recommended"],
+      images: [] },
+
+    { id: "ivory-chikankari-kurta-set", category: "readymade", name: "Ivory Chikankari Kurta Set",
+      price: 3299, badge: "Bestseller", fabric: "Breathable cotton with chikankari work",
+      description: "A graceful ivory kurta set with hand-style chikankari embroidery. Light, breathable and easy to wear from morning to evening.",
+      details: ["3-piece set: kurta, pants and dupatta", "Soft, breathable cotton", "Chikankari embroidery", "Gentle hand wash"],
+      images: [] },
+
+    { id: "emerald-silk-sharara", category: "readymade", name: "Emerald Silk Sharara Suit",
+      price: 4899, fabric: "Silk blend with gold border",
+      description: "A statement sharara suit in rich emerald silk with a subtle gold border. Flowing, festive and beautifully balanced.",
+      details: ["3-piece set: kurta, sharara and dupatta", "Lustrous silk blend", "Gold border detail", "Dry clean recommended"],
+      images: [] },
+
+    { id: "rose-georgette-festive", category: "readymade", name: "Rose Georgette Festive Suit",
+      price: 3999, mrp: 4599, fabric: "Flowing georgette with sequin accents",
+      description: "A soft rose georgette suit with tasteful sequin accents. Light on the shoulders and lovely in motion.",
+      details: ["3-piece set: kurta, bottom and dupatta", "Flowing georgette", "Sequin accents", "Dry clean recommended"],
+      images: [] },
+
+    { id: "printed-cotton-lawn-3pc", category: "unstitched", name: "Printed Cotton Lawn 3-Piece",
+      price: 1899, badge: "Bestseller", fabric: "Premium cotton lawn", sizes: false, tailoringHint: true,
+      note: "Unstitched 3-piece fabric set",
+      description: "Soft, breathable premium cotton lawn with a fine floral print, supplied as an unstitched 3-piece set. Ideal for everyday comfort through the warm months.",
+      details: ["Unstitched set: shirt, bottom and dupatta lengths", "Premium cotton lawn", "Fade-resistant print", "Pre-washing recommended before stitching"],
+      images: [] },
+
+    { id: "chanderi-silk-suit-length", category: "unstitched", name: "Chanderi Silk Suit Length",
+      price: 2799, fabric: "Chanderi silk", sizes: false, tailoringHint: true,
+      note: "Unstitched 3-piece fabric set",
+      description: "Light, translucent chanderi silk with a gentle sheen. A classic choice for festive wear, stitched exactly the way you like.",
+      details: ["Unstitched set: shirt, bottom and dupatta lengths", "Chanderi silk", "Soft natural sheen", "Dry clean recommended"],
+      images: [] },
+
+    { id: "mulmul-cotton-set", category: "unstitched", name: "Soft Mulmul Cotton Set",
+      price: 2199, fabric: "Pure mulmul cotton", sizes: false, tailoringHint: true,
+      note: "Unstitched 3-piece fabric set",
+      description: "Featherlight mulmul cotton that feels wonderful against the skin. Perfect for summer suits that stay cool and elegant.",
+      details: ["Unstitched set: shirt, bottom and dupatta lengths", "Pure mulmul cotton", "Very soft and breathable", "Gentle hand wash"],
+      images: [] },
+
+    { id: "classic-nida-abaya", category: "burqas", name: "Classic Nida Abaya Burqa",
+      price: 2999, fabric: "Premium nida fabric",
+      description: "A refined, flowing abaya in premium nida with a graceful drape and soft finish. Comfortable for all-day wear.",
+      details: ["Premium nida fabric", "Easy, flowing fit", "Subtle embroidered cuffs", "Machine wash gentle"],
+      images: [] },
+
+    { id: "crepe-front-open-abaya", category: "burqas", name: "Crepe Front-Open Abaya",
+      price: 3499, badge: "New", fabric: "Fluid crepe with embroidered border",
+      description: "A modern front-open abaya in fluid crepe with a fine embroidered border. Layer it over any outfit for effortless elegance.",
+      details: ["Front-open design", "Fluid crepe with matte finish", "Embroidered border", "Gentle hand wash"],
+      images: [] },
+
+    { id: "chiffon-hijab-trio", category: "burqas", name: "Premium Chiffon Hijab Set",
+      price: 899, fabric: "Soft chiffon", sizes: false, note: "Set of 3 hijabs, free size",
+      description: "A set of three lightweight chiffon hijabs in coordinated tones. Easy to drape and comfortable all day.",
+      details: ["Set of 3 hijabs", "Soft, lightweight chiffon", "Free size", "Gentle hand wash"],
+      images: [] }
+  ]
+};
+
+
+/* =====================================================================
+   PART 2  |  SHARED CODE  (please do not edit below this line)
+   ===================================================================== */
+(function (N) {
+  "use strict";
+
+  var C = N.config;
+
+  /* ----- safe text / data helpers ----- */
+  N.esc = function (v) {
+    return String(v == null ? "" : v).replace(/[&<>"']/g, function (ch) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch];
+    });
+  };
+  N.price = function (n) {
+    return (typeof n === "number" && n > 0) ? C.currency + n.toLocaleString("en-IN") : "Price on request";
+  };
+  N.tone = function (arr) {
+    var ok = function (c) { return typeof c === "string" && /^#[0-9a-f]{3,8}$/i.test(c); };
+    return (arr && ok(arr[0]) && ok(arr[1])) ? arr : ["#7a2238", "#2c0c16"];
+  };
+  var low = function (v) { return String(v == null ? "" : v).trim().toLowerCase(); };
+
+  N.cat = function (id) { return N.categories.filter(function (c) { return low(c.id) === low(id); })[0] || null; };
+  N.product = function (id) { return N.products.filter(function (p) { return low(p.id) === low(id); })[0] || null; };
+  N.inCat = function (id) { return N.products.filter(function (p) { return low(p.category) === low(id); }); };
+  N.wa = function (text) { return "https://wa.me/" + C.whatsapp + "?text=" + encodeURIComponent(text); };
+  N.sizesFor = function (p) {
+    var c = N.cat(p.category) || {};
+    if (p.sizes === false || (p.sizes === undefined && c.sizes === false)) return null;
+    return p.sizes || c.sizes || C.defaultSizes;
+  };
+
+  /* ----- icons (inline SVG, inherit colour) ----- */
+  var ICONS = {
+    suit: '<path d="M23 6c1.5 5 5 8 9 8s7.5-3 9-8l11 7-5 10-6-2 4 35H19l4-35-6 2-5-10z"/><path d="M32 14v42"/><path d="M27 7l5 9 5-9"/><circle cx="32" cy="26" r="1" fill="currentColor"/><circle cx="32" cy="34" r="1" fill="currentColor"/><circle cx="32" cy="42" r="1" fill="currentColor"/>',
+    fabric: '<ellipse cx="18" cy="26" rx="7" ry="13"/><ellipse cx="18" cy="26" rx="2.5" ry="5"/><path d="M18 13h28c4 0 7 5.8 7 13s-3 13-7 13H18"/><path d="M26 19c3 2 5-2 8 0s5-2 8 0M26 26c3 2 5-2 8 0s5-2 8 0M26 33c3 2 5-2 8 0s5-2 8 0"/><path d="M22 39c5 5 12-1 20 4s9 9 9 14c-9-3-14 2-21-2s-8-9-8-16z"/>',
+    hijab: '<path d="M32 5c-9 0-14 7-14 16 0 6 2 9 2 13L11 58h42l-9-24c0-4 2-7 2-13 0-9-5-16-14-16z"/><ellipse cx="32" cy="22" rx="6.5" ry="8.5"/><path d="M32 34v24M22 40c3 2 6 3 10 3s7-1 10-3"/>',
+    scissors: '<circle cx="19" cy="40" r="5.5"/><circle cx="45" cy="40" r="5.5"/><path d="M22 35L44 6M42 35L20 6"/><circle cx="32" cy="22.5" r="1.4" fill="currentColor"/><rect x="5" y="52" width="54" height="8" rx="1.5"/><path d="M12 52v4M19 52v3M26 52v4M33 52v3M40 52v4M47 52v3M54 52v4"/>',
+    gem: '<path d="M32 6l7 16 17 2-13 11 4 17-15-9-15 9 4-17L8 24l17-2z"/>'
+  };
+  N.icon = function (name) {
+    return '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[name] || ICONS.gem) + "</svg>";
+  };
+
+  /* ----- product picture: placeholder always sits underneath, so a missing photo falls back gracefully ----- */
+  N.media = function (p, cls, imgIndex) {
+    var c = N.cat(p.category) || {};
+    var t = N.tone(p.tone || c.tone);
+    var src = (p.images && p.images[imgIndex || 0]) || "";
+    return '<div class="media ' + (cls || "") + '" style="--c1:' + t[0] + ";--c2:" + t[1] + '">' +
+      '<div class="ph" aria-hidden="true"><span>' + N.icon(c.icon) + "</span></div>" +
+      (src ? '<img src="' + N.esc(src) + '" alt="' + N.esc(p.name) + '" loading="lazy" decoding="async">' : "") +
+      "</div>";
+  };
+  document.addEventListener("error", function (e) {      /* broken image -> remove it, placeholder shows */
+    var t = e.target;
+    if (t && t.tagName === "IMG" && t.closest && t.closest(".media")) t.remove();
+  }, true);
+
+  /* ----- product card (used by category + related lists) ----- */
+  N.card = function (p, i) {
+    var c = N.cat(p.category) || {};
+    var sold = p.inStock === false;
+    return '<a class="pc sw" href="product.html?id=' + encodeURIComponent(p.id) + '" style="animation-delay:' + Math.min(i || 0, 8) * 70 + 'ms" aria-label="' + N.esc(p.name + ", " + N.price(p.price) + ". View details") + '">' +
+      '<div class="mwrap">' + N.media(p) + ((sold || p.badge) ? '<span class="badge">' + N.esc(sold ? "Sold out" : p.badge) + "</span>" : "") + "</div>" +
+      '<div class="pi"><p class="pcat">' + N.esc(c.name || "") + "</p><h3>" + N.esc(p.name) + "</h3>" +
+      '<p class="pp">' + N.esc(N.price(p.price)) + (p.mrp > p.price ? " <s>" + N.esc(N.price(p.mrp)) + "</s>" : "") + "</p>" +
+      '<span class="vd">View Details</span></div></a>';
+  };
+
+  /* ----- shared page behaviour: menu, WhatsApp button, year ----- */
+  N.initShell = function () {
+    var burger = document.getElementById("burger"), links = document.getElementById("links");
+    function setMenu(o) {
+      if (!links || !burger) return;
+      links.classList.toggle("open", o);
+      burger.setAttribute("aria-expanded", String(o));
+      burger.setAttribute("aria-label", o ? "Close menu" : "Open menu");
+    }
+    if (burger) burger.addEventListener("click", function () { setMenu(!links.classList.contains("open")); });
+    document.addEventListener("pointerdown", function (e) {
+      if (links && links.classList.contains("open") && !links.contains(e.target) && !burger.contains(e.target)) setMenu(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && links && links.classList.contains("open")) { setMenu(false); burger.focus(); }
+    });
+    var fab = document.getElementById("fab");
+    if (fab) fab.href = N.wa("Hello Nahira Fashion, I would like to chat.");
+    var yr = document.getElementById("yr");
+    if (yr) yr.textContent = new Date().getFullYear();
+  };
+
+  /* ----- friendly warnings in the browser console if the data above has a mistake ----- */
+  (function validate() {
+    var seen = {};
+    N.products.forEach(function (p, i) {
+      var tag = 'products[' + i + '] "' + (p.id || "?") + '"';
+      if (!p.id || /\s/.test(p.id)) console.warn("NAHIRA data: " + tag + " needs an id without spaces.");
+      if (seen[low(p.id)]) console.warn("NAHIRA data: duplicate product id " + tag);
+      seen[low(p.id)] = true;
+      if (!N.cat(p.category)) console.warn("NAHIRA data: " + tag + ' uses unknown category "' + p.category + '".');
+      if (!p.name) console.warn("NAHIRA data: " + tag + " has no name.");
+    });
+  })();
+
+})(window.NAHIRA);
