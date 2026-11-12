@@ -19,10 +19,23 @@ window.NAHIRA = {
     { id: "tailoring",  name: "Custom Tailoring",   tagline: "Stitched to your measurements", icon: "scissors", tone: ["#a03450", "#2a0c16"], href: "index.html#tailoring" }
   ],
   products: [
-    {
-      id: "purple-embroidered-cotton-suit", category: "readymade", name: "Purple Embroidered Cotton Suit Set", price: 0, badge: "New", fabric: "100% Pure & Soft Cotton", sizes: ["M", "L", "XL", "XXL", "XXXL"],
-      description: "Premium cotton short kurti paired with a soft mal cotton farshi shalwar and pure mal cotton dupatta, featuring intricate traditional embroidery.",
-      details: ["Top: Premium Cotton Short Kurti", "Bottom: Soft Mal Cotton Farshi Shalwar", "Dupatta: Pure Mal Cotton Dupatta", "Soft and breathable pure cotton"],
+{
+      id: "purple-embroidered-cotton-suit",
+      category: "unstitched",
+      name: "Pashmina Unstitched Suit Set",
+      price: 0,
+      badge: "New",
+      fabric: "Pashmina fabric",
+      sizes: false,
+      tailoringHint: true,
+      note: "Unstitched 3-piece fabric set",
+      description: "A rich unstitched Pashmina suit set with fine traditional styling. Perfect for custom stitching just the way you like it.",
+      details: [
+        "2.5 mtr top",
+        "2.5 mtr bottom",
+        "2.25 mtr dupatta",
+        "Pashmina fabric"
+      ],
       images: ["images/1.jpeg"]
     },
     {
