@@ -19,22 +19,13 @@ window.NAHIRA = {
     phoneTel: "+919116639756",           // used for "tel:" call links
     phoneDisplay: "+91 91166 39756",     // shown on the pages
     currency: "\u20B9",                  // rupee sign
-    defaultSizes: ["S", "M", "L", "XL", "Custom"],
+    defaultSizes: ["M", "L", "XL", "XXL", "XXXL"],
     maxQty: 10,
     coords: "24.5827947\u00B0 N, 73.6676145\u00B0 E",
     mapLink: "https://www.google.com/maps/search/?api=1&query=24.5827947,73.6676145"
   },
 
-  /* ---------- CATEGORIES ----------
-     id        short lowercase word used in the web address (category.html?cat=ID)
-     name      title shown to customers
-     tagline   one short line under the title
-     description  longer text shown at the top of the category page
-     icon      "suit" | "fabric" | "hijab" | "scissors" | "gem"
-     tone      two colours for the placeholder background
-     sizes     false = hide the size selector for every product in this category
-     href      optional: link somewhere else instead of a product grid
-  */
+  /* ---------- CATEGORIES ---------- */
   categories: [
     { id: "readymade",  name: "Readymade Suits",   tagline: "Designer partywear & daily wear",
       description: "Ready-to-wear suits for festive evenings and easy everyday elegance. Reserve your size and collect it from our Udaipur boutique.",
@@ -52,84 +43,93 @@ window.NAHIRA = {
       icon: "scissors", tone: ["#a03450", "#2a0c16"], href: "index.html#tailoring" }
   ],
 
-  /* ---------- PRODUCTS (placeholder samples: replace with your real stock) ----------
-     id           unique, lowercase, no spaces (use dashes). It appears in the web address.
-     category     must match a category id above
-     price        number in rupees (use 0 to show "Price on request")
-     mrp          optional original price, shown struck through
-     badge        optional small label: "New", "Bestseller" ...
-     fabric       short fabric line
-     description  paragraph shown on the product page
-     details      list of bullet points
-     sizes        optional: ["S","M","L"] to override, or false to hide the size selector
-     images       list of image paths (first one is the main photo)
-     inStock      set false to show "Sold out"
-     note         optional extra line under the price
-     tailoringHint  true = show a "Want it stitched?" link to Custom Tailoring
-  */
+  /* ---------- PRODUCTS (Your 5 New Suits - Prices Removed) ---------- */
   products: [
-    { id: "wine-velvet-anarkali", category: "readymade", name: "Wine Velvet Anarkali Suit",
-      price: 5499, mrp: 6999, badge: "New", fabric: "Soft velvet with fine zari embroidery",
-      description: "A richly draped anarkali in deep wine velvet, finished with delicate zari work at the neckline and hem. Made for weddings, festive dinners and special evenings.",
-      details: ["3-piece set: anarkali, churidar and dupatta", "Soft velvet with silky inner lining", "Fine zari embroidery", "Dry clean recommended"],
-      images: [] },
-
-    { id: "ivory-chikankari-kurta-set", category: "readymade", name: "Ivory Chikankari Kurta Set",
-      price: 3299, badge: "Bestseller", fabric: "Breathable cotton with chikankari work",
-      description: "A graceful ivory kurta set with hand-style chikankari embroidery. Light, breathable and easy to wear from morning to evening.",
-      details: ["3-piece set: kurta, pants and dupatta", "Soft, breathable cotton", "Chikankari embroidery", "Gentle hand wash"],
-      images: [] },
-
-    { id: "emerald-silk-sharara", category: "readymade", name: "Emerald Silk Sharara Suit",
-      price: 4899, fabric: "Silk blend with gold border",
-      description: "A statement sharara suit in rich emerald silk with a subtle gold border. Flowing, festive and beautifully balanced.",
-      details: ["3-piece set: kurta, sharara and dupatta", "Lustrous silk blend", "Gold border detail", "Dry clean recommended"],
-      images: [] },
-
-    { id: "rose-georgette-festive", category: "readymade", name: "Rose Georgette Festive Suit",
-      price: 3999, mrp: 4599, fabric: "Flowing georgette with sequin accents",
-      description: "A soft rose georgette suit with tasteful sequin accents. Light on the shoulders and lovely in motion.",
-      details: ["3-piece set: kurta, bottom and dupatta", "Flowing georgette", "Sequin accents", "Dry clean recommended"],
-      images: [] },
-
-    { id: "printed-cotton-lawn-3pc", category: "unstitched", name: "Printed Cotton Lawn 3-Piece",
-      price: 1899, badge: "Bestseller", fabric: "Premium cotton lawn", sizes: false, tailoringHint: true,
-      note: "Unstitched 3-piece fabric set",
-      description: "Soft, breathable premium cotton lawn with a fine floral print, supplied as an unstitched 3-piece set. Ideal for everyday comfort through the warm months.",
-      details: ["Unstitched set: shirt, bottom and dupatta lengths", "Premium cotton lawn", "Fade-resistant print", "Pre-washing recommended before stitching"],
-      images: [] },
-
-    { id: "chanderi-silk-suit-length", category: "unstitched", name: "Chanderi Silk Suit Length",
-      price: 2799, fabric: "Chanderi silk", sizes: false, tailoringHint: true,
-      note: "Unstitched 3-piece fabric set",
-      description: "Light, translucent chanderi silk with a gentle sheen. A classic choice for festive wear, stitched exactly the way you like.",
-      details: ["Unstitched set: shirt, bottom and dupatta lengths", "Chanderi silk", "Soft natural sheen", "Dry clean recommended"],
-      images: [] },
-
-    { id: "mulmul-cotton-set", category: "unstitched", name: "Soft Mulmul Cotton Set",
-      price: 2199, fabric: "Pure mulmul cotton", sizes: false, tailoringHint: true,
-      note: "Unstitched 3-piece fabric set",
-      description: "Featherlight mulmul cotton that feels wonderful against the skin. Perfect for summer suits that stay cool and elegant.",
-      details: ["Unstitched set: shirt, bottom and dupatta lengths", "Pure mulmul cotton", "Very soft and breathable", "Gentle hand wash"],
-      images: [] },
-
-    { id: "classic-nida-abaya", category: "burqas", name: "Classic Nida Abaya Burqa",
-      price: 2999, fabric: "Premium nida fabric",
-      description: "A refined, flowing abaya in premium nida with a graceful drape and soft finish. Comfortable for all-day wear.",
-      details: ["Premium nida fabric", "Easy, flowing fit", "Subtle embroidered cuffs", "Machine wash gentle"],
-      images: [] },
-
-    { id: "crepe-front-open-abaya", category: "burqas", name: "Crepe Front-Open Abaya",
-      price: 3499, badge: "New", fabric: "Fluid crepe with embroidered border",
-      description: "A modern front-open abaya in fluid crepe with a fine embroidered border. Layer it over any outfit for effortless elegance.",
-      details: ["Front-open design", "Fluid crepe with matte finish", "Embroidered border", "Gentle hand wash"],
-      images: [] },
-
-    { id: "chiffon-hijab-trio", category: "burqas", name: "Premium Chiffon Hijab Set",
-      price: 899, fabric: "Soft chiffon", sizes: false, note: "Set of 3 hijabs, free size",
-      description: "A set of three lightweight chiffon hijabs in coordinated tones. Easy to drape and comfortable all day.",
-      details: ["Set of 3 hijabs", "Soft, lightweight chiffon", "Free size", "Gentle hand wash"],
-      images: [] }
+    {
+      id: "purple-embroidered-cotton-suit",
+      category: "readymade",
+      name: "Purple Embroidered Cotton Suit Set",
+      price: 0,
+      badge: "New",
+      fabric: "100% Pure & Soft Cotton",
+      sizes: ["M", "L", "XL", "XXL", "XXXL"],
+      description: "Premium cotton short kurti paired with a soft mal cotton farshi shalwar and pure mal cotton dupatta, featuring intricate traditional embroidery.",
+      details: [
+        "Top: Premium Cotton Short Kurti",
+        "Bottom: Soft Mal Cotton Farshi Shalwar",
+        "Dupatta: Pure Mal Cotton Dupatta",
+        "Soft and breathable pure cotton"
+      ],
+      images: ["images/suit-1.jpg"]
+    },
+    {
+      id: "teal-printed-cotton-salwar-suit",
+      category: "readymade",
+      name: "Teal Printed Cotton Salwar Suit",
+      price: 0,
+      badge: "New",
+      fabric: "100% Pure & Soft Cotton",
+      sizes: ["M", "L", "XL", "XXL", "XXXL"],
+      description: "Elegant teal block-print style cotton kurti with a matching traditional shalwar and dupatta set, designed for graceful everyday wear.",
+      details: [
+        "Top: Premium Cotton Short Kurti",
+        "Bottom: Soft Mal Cotton Farshi Shalwar",
+        "Dupatta: Pure Mal Cotton Dupatta",
+        "Lightweight everyday comfort"
+      ],
+      images: ["images/suit-2.jpg"]
+    },
+    {
+      id: "designer-anarkali-banarasi-suit",
+      category: "readymade",
+      name: "Designer Anarkali with Banarasi Dupatta",
+      price: 0,
+      badge: "Bestseller",
+      fabric: "Premium Fancy Silk & Banarasi Silk",
+      sizes: ["M", "L", "XL", "XXL"],
+      description: "Exquisite designer Anarkali suit set in premium fancy silk with intricate cut-dana and beads handwork on the neckline, paired with a rich Banarasi silk dupatta.",
+      details: [
+        "Kurta & Pant: Premium Fancy Silk Fabric",
+        "Dupatta: Rich Banarasi Silk Dupatta with Zari Border",
+        "Hand work on neckline with cut-dana & beads",
+        "Subtle detailing on sleeve cuffs"
+      ],
+      images: ["images/suit-3.jpg"]
+    },
+    {
+      id: "yellow-chanderi-silk-anarkali",
+      category: "readymade",
+      name: "Yellow Chanderi Silk Anarkali Set",
+      price: 0,
+      badge: "New",
+      fabric: "Pure Chanderi Silk",
+      sizes: ["L", "XL", "XXL", "3XL"],
+      description: "A stunning 3-piece Anarkali kurta with kali plazo and matching dupatta in pure chanderi silk, detailed with gorgeous festive embellishments.",
+      details: [
+        "Outfit Style: 3-Piece Anarkali Kurta with Kali Plazo and Dupatta",
+        "Fabric: Pure Chanderi Silk",
+        "Lustrous festive drape",
+        "Dry clean recommended"
+      ],
+      images: ["images/suit-4.jpg"]
+    },
+    {
+      id: "rich-maroon-cotton-palazzo-set",
+      category: "readymade",
+      name: "Rich Maroon Cotton Palazzo Set",
+      price: 0,
+      badge: "Bestseller",
+      fabric: "Premium 100% Cotton",
+      sizes: ["M", "L", "XL", "XXL", "XXXL"],
+      description: "A rich maroon straight cotton kurti featuring geometric threadwork detailing on the chest and sleeves, paired with a comfortable matching straight palazzo.",
+      details: [
+        "Fabric: Premium 100% Cotton (Soft and breathable)",
+        "Color: Rich Maroon",
+        "Set Includes: Straight Cotton Kurti and matching Straight Palazzo",
+        "Gentle hand wash"
+      ],
+      images: ["images/suit-5.jpg"]
+    }
   ]
 };
 
