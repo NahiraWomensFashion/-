@@ -60,7 +60,7 @@ window.NAHIRA = {
         "Dupatta: Pure Mal Cotton Dupatta",
         "Soft and breathable pure cotton"
       ],
-      images: ["images/suit-1.jpg"]
+      images: ["images/suit-1.jpeg"]
     },
     {
       id: "teal-printed-cotton-salwar-suit",
@@ -77,7 +77,7 @@ window.NAHIRA = {
         "Dupatta: Pure Mal Cotton Dupatta",
         "Lightweight everyday comfort"
       ],
-      images: ["images/suit-2.jpg"]
+      images: ["images/suit-2.jpeg"]
     },
     {
       id: "designer-anarkali-banarasi-suit",
@@ -94,7 +94,7 @@ window.NAHIRA = {
         "Hand work on neckline with cut-dana & beads",
         "Subtle detailing on sleeve cuffs"
       ],
-      images: ["images/suit-3.jpg"]
+      images: ["images/suit-3.jpeg"]
     },
     {
       id: "yellow-chanderi-silk-anarkali",
@@ -111,7 +111,7 @@ window.NAHIRA = {
         "Lustrous festive drape",
         "Dry clean recommended"
       ],
-      images: ["images/suit-4.jpg"]
+      images: ["images/suit-4.jpeg"]
     },
     {
       id: "rich-maroon-cotton-palazzo-set",
@@ -128,7 +128,7 @@ window.NAHIRA = {
         "Set Includes: Straight Cotton Kurti and matching Straight Palazzo",
         "Gentle hand wash"
       ],
-      images: ["images/suit-5.jpg"]
+      images: ["images/suit-5.jpeg"]
     }
   ]
 };
