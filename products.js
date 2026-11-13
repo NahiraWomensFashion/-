@@ -39,27 +39,71 @@ window.NAHIRA = {
       images: ["images/1.jpeg"]
     },
     {
-      id: "teal-printed-cotton-salwar-suit", category: "readymade", name: "Teal Printed Cotton Salwar Suit", price: 0, badge: "New", fabric: "100% Pure & Soft Cotton", sizes: ["M", "L", "XL", "XXL", "XXXL"],
+      id: "teal-printed-cotton-salwar-suit",
+      category: "readymade", 
+      name: "Teal Printed Cotton Salwar Suit", 
+      price: 0, 
+      badge: "New", 
+      fabric: "100% Pure & Soft Cotton", 
+      sizes: ["M", "L", "XL", "XXL", "XXXL"],
       description: "Elegant teal block-print style cotton kurti with a matching traditional shalwar and dupatta set, designed for graceful everyday wear.",
-      details: ["Top: Premium Cotton Short Kurti", "Bottom: Soft Mal Cotton Farshi Shalwar", "Dupatta: Pure Mal Cotton Dupatta", "Lightweight everyday comfort"],
+      details: [
+         "Top: Premium Cotton Short Kurti",
+         "Bottom: Soft Mal Cotton Farshi Shalwar",
+         "Dupatta: Pure Mal Cotton Dupatta",
+         "Lightweight everyday comfort"
+      ],
       images: ["images/2.jpeg"]
     },
     {
-      id: "designer-anarkali-banarasi-suit", category: "readymade", name: "Designer Anarkali with Banarasi Dupatta", price: 0, badge: "Bestseller", fabric: "Premium Fancy Silk & Banarasi Silk", sizes: ["M", "L", "XL", "XXL"],
+      id: "designer-anarkali-banarasi-suit", 
+      category: "readymade", 
+      name: "Designer Anarkali with Banarasi Dupatta", 
+      price: 0, 
+      badge: "New", 
+      fabric: "Premium Fancy Silk & Banarasi Silk", 
+      sizes: ["M", "L", "XL", "XXL"],
       description: "Exquisite designer Anarkali suit set in premium fancy silk with intricate cut-dana and beads handwork on the neckline, paired with a rich Banarasi silk dupatta.",
-      details: ["Kurta & Pant: Premium Fancy Silk Fabric", "Dupatta: Rich Banarasi Silk Dupatta with Zari Border", "Hand work on neckline with cut-dana & beads", "Subtle detailing on sleeve cuffs"],
+      details: [
+         "Kurta & Pant: Premium Fancy Silk Fabric",
+         "Dupatta: Rich Banarasi Silk Dupatta with Zari Border",
+         "Hand work on neckline with cut-dana & beads",
+         "Subtle detailing on sleeve cuffs"
+      ],
       images: ["images/3.jpeg"]
     },
     {
-      id: "yellow-chanderi-silk-anarkali", category: "readymade", name: "Yellow Chanderi Silk Anarkali Set", price: 0, badge: "New", fabric: "Pure Chanderi Silk", sizes: ["L", "XL", "XXL", "3XL"],
+      id: "yellow-chanderi-silk-anarkali", 
+      category: "readymade", 
+      name: "Yellow Chanderi Silk Anarkali Set", 
+      price: 0, 
+      badge: "New", 
+      fabric: "Pure Chanderi Silk", 
+      sizes: ["L", "XL", "XXL", "3XL"],
       description: "A stunning 3-piece Anarkali kurta with kali plazo and matching dupatta in pure chanderi silk, detailed with gorgeous festive embellishments.",
-      details: ["Outfit Style: 3-Piece Anarkali Kurta with Kali Plazo and Dupatta", "Fabric: Pure Chanderi Silk", "Lustrous festive drape", "Dry clean recommended"],
+      details: [
+         "Outfit Style: 3-Piece Anarkali Kurta with Kali Plazo and Dupatta",
+         "Fabric: Pure Chanderi Silk",
+         "Lustrous festive drape",
+         "Dry clean recommended"
+      ],
       images: ["images/4.jpeg"]
     },
     {
-      id: "rich-maroon-cotton-palazzo-set", category: "readymade", name: "Rich Maroon Cotton Palazzo Set", price: 0, badge: "Bestseller", fabric: "Premium 100% Cotton", sizes: ["M", "L", "XL", "XXL", "XXXL"],
+      id: "rich-maroon-cotton-palazzo-set", 
+      category: "readymade", 
+      name: "Rich Maroon Cotton Palazzo Set", 
+      price: 0, 
+      badge: "New", 
+      fabric: "Premium 100% Cotton", 
+      sizes: ["M", "L", "XL", "XXL", "XXXL"],
       description: "A rich maroon straight cotton kurti featuring geometric threadwork detailing on the chest and sleeves, paired with a comfortable matching straight palazzo.",
-      details: ["Fabric: Premium 100% Cotton (Soft and breathable)", "Color: Rich Maroon", "Set Includes: Straight Cotton Kurti and matching Straight Palazzo", "Gentle hand wash"],
+      details: [
+         "Fabric: Premium 100% Cotton (Soft and breathable)",
+         "Color: Rich Maroon",
+         "Set Includes: Straight Cotton Kurti and matching Straight Palazzo",
+         "Gentle hand wash"
+      ],
       images: ["images/5.jpeg"]
     },
      {
