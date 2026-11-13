@@ -61,6 +61,22 @@ window.NAHIRA = {
       description: "A rich maroon straight cotton kurti featuring geometric threadwork detailing on the chest and sleeves, paired with a comfortable matching straight palazzo.",
       details: ["Fabric: Premium 100% Cotton (Soft and breathable)", "Color: Rich Maroon", "Set Includes: Straight Cotton Kurti and matching Straight Palazzo", "Gentle hand wash"],
       images: ["images/5.jpeg"]
+    },
+     {
+      id: "rayon-embroidered-suit-set",
+      category: "readymade",
+      name: "Rayon Embroidered Suit with Chanderi Dupatta",
+      price: 0,
+      badge: "New",
+      fabric: "Premium Rayon & Chanderi",
+      sizes: ["M", "L", "XL", "XXL"],
+      description: "An elegant premium rayon suit featuring intricate thread embroidery on the v-neck, sleeve side-cuts, and side pockets, paired with a matching straight-cut pant and a detailed cutwork Chanderi dupatta.",
+      details: [
+        "Kurta: Premium Rayon with thread embroidery on neckline, sleeves, and pockets",
+        "Pant: Matching straight-cut Rayon pant",
+        "Dupatta: Elegant Chanderi with cutwork borders and light embroidery"
+      ],
+      images: ["images/6.jpeg"]
     }
   ]
 };
